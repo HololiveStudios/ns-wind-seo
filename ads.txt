@@ -1,0 +1,4 @@
+# Só ative depois de criar a conta AdSense.
+# Troque pub-0000000000000000 pelo seu ID de editor (AdSense > Conta > Informações da conta),
+# remova o "#" da linha abaixo e publique este arquivo na raiz do domínio.
+# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0

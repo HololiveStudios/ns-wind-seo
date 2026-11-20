@@ -1,0 +1,66 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      ".htaccess",
+      ".git/**",
+      "**/node_modules/**"
+    ],
+    "trailingSlash": false,
+    "redirects": [
+      {
+        "source": "/index.html",
+        "destination": "/",
+        "type": 301
+      }
+    ],
+    "headers": [
+      {
+        "source": "**/*.@(avif|webp|png|jpg|svg|ico|woff2)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=604800"
+          }
+        ]
+      },
+      {
+        "source": "**/*.@(css|js)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=86400"
+          }
+        ]
+      },
+      {
+        "source": "/404.html",
+        "headers": [
+          {
+            "key": "X-Robots-Tag",
+            "value": "noindex"
+          }
+        ]
+      },
+      {
+        "source": "/llms.txt",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "text/plain; charset=utf-8"
+          }
+        ]
+      },
+      {
+        "source": "/.well-known/*.json",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "application/json; charset=utf-8"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+# Use este arquivo SOMENTE se a hospedagem for Apache (cPanel/Hostinger etc.).
+# Em Firebase Hosting use o firebase.json.
+RewriteEngine On
+
+# HTTPS + domínio sem www (301)
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://nswind.com.br%{REQUEST_URI} [L,R=301]
+
+# /index.html -> /
+RewriteCond %{THE_REQUEST} \s/index\.html[\s?] [NC]
+RewriteRule ^index\.html$ / [L,R=301]
+
+# Páginas de erro (404 e 410 usam a mesma página)
+ErrorDocument 404 /404.html
+ErrorDocument 410 /404.html
+# Exemplo de URL removida de vez (410):  Redirect gone /pagina-antiga
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  <Files "404.html">
+    Header set X-Robots-Tag "noindex"
+  </Files>
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/avif "access plus 7 days"
+  ExpiresByType image/webp "access plus 7 days"
+  ExpiresByType image/png "access plus 7 days"
+  ExpiresByType text/css "access plus 1 day"
+  ExpiresByType application/javascript "access plus 1 day"
+</IfModule>
